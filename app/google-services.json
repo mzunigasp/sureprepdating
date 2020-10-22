@@ -1,0 +1,48 @@
+{
+  "project_info": {
+    "project_number": "562144101210",
+    "firebase_url": "https://sureprepdating.firebaseio.com",
+    "project_id": "sureprepdating",
+    "storage_bucket": "sureprepdating.appspot.com"
+  },
+  "client": [
+    {
+      "client_info": {
+        "mobilesdk_app_id": "1:562144101210:android:fc3074ce44e652d7b42963",
+        "android_client_info": {
+          "package_name": "com.sureprep.dating"
+        }
+      },
+      "oauth_client": [
+        {
+          "client_id": "562144101210-bbdvq5c2qkt17u614prara0hjaglo1sq.apps.googleusercontent.com",
+          "client_type": 1,
+          "android_info": {
+            "package_name": "com.sureprep.dating",
+            "certificate_hash": "2b793d79bfba236192c31786c1c1666d3952d812"
+          }
+        },
+        {
+          "client_id": "562144101210-dqloro2k0k1499grrbnu261qukb21b8q.apps.googleusercontent.com",
+          "client_type": 3
+        }
+      ],
+      "api_key": [
+        {
+          "current_key": "AIzaSyCprDi7BsznWmrh59TRnJS45zZ9PpNZA6Y"
+        }
+      ],
+      "services": {
+        "appinvite_service": {
+          "other_platform_oauth_client": [
+            {
+              "client_id": "562144101210-dqloro2k0k1499grrbnu261qukb21b8q.apps.googleusercontent.com",
+              "client_type": 3
+            }
+          ]
+        }
+      }
+    }
+  ],
+  "configuration_version": "1"
+}
