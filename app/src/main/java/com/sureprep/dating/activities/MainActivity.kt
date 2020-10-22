@@ -1,12 +1,16 @@
-package com.sureprep.dating
+package com.sureprep.dating.activities
 
+import android.content.Context
+import android.content.Intent
 import androidx.appcompat.app.AppCompatActivity
 import android.os.Bundle
 import android.util.Log
 import android.widget.ArrayAdapter
 import android.widget.Toast
 import com.lorentzos.flingswipe.SwipeFlingAdapterView
+import com.sureprep.dating.R
 import kotlinx.android.synthetic.main.activity_main.*
+
 
 class MainActivity : AppCompatActivity() {
 
@@ -17,6 +21,11 @@ class MainActivity : AppCompatActivity() {
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
         setContentView(R.layout.activity_main)
+
+        al.add("php")
+        al.add("c")
+        al.add("python")
+        al.add("java")
 
         //choose your favorite adapter
         arrayAdapter = ArrayAdapter<String>(this, R.layout.item, R.id.helloText, al)
@@ -54,5 +63,8 @@ class MainActivity : AppCompatActivity() {
                 i++
             }
         })
+    }
+    companion object {
+        fun newIntent(context: Context?) = Intent(context, MainActivity::class.java)
     }
 }
