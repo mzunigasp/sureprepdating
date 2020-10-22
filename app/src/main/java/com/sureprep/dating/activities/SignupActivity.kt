@@ -8,11 +8,16 @@ import android.view.View
 import android.widget.Toast
 import com.google.firebase.auth.FirebaseAuth
 import com.google.firebase.auth.ktx.auth
+import com.google.firebase.database.FirebaseDatabase
 import com.google.firebase.ktx.Firebase
 import com.sureprep.dating.R
+import com.sureprep.dating.User
+import com.sureprep.dating.util.DATA_USERS
 import kotlinx.android.synthetic.main.activity_signup.*
 
 class SignupActivity : AppCompatActivity() {
+
+    private val firebaseDatabase = FirebaseDatabase.getInstance().reference
     private val firebaseAuth = FirebaseAuth.getInstance()
     private val firebaseAuthListener = FirebaseAuth.AuthStateListener {
         val user = firebaseAuth.currentUser
@@ -43,9 +48,13 @@ class SignupActivity : AppCompatActivity() {
             firebaseAuth.createUserWithEmailAndPassword(emailET.text.toString(), passwordET.text.toString())
                 .addOnCompleteListener { task ->
                     if(task.isSuccessful) {
+                        val email = emailET.text.toString()
+                        val userId = firebaseAuth.currentUser?.uid ?: ""
+                        val user = User(userId, "","", email,"","", "")
+                        firebaseDatabase.child(DATA_USERS).child(userId).setValue(user)
                         startActivity(MainActivity.newIntent(this))
                     }
-                    else if(!task.isSuccessful) {
+                    else {
                         Toast.makeText(this, "Signup error ${task.exception?.localizedMessage}", Toast.LENGTH_SHORT).show()
                     }
                 }

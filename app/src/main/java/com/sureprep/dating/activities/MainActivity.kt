@@ -22,10 +22,10 @@ class MainActivity : AppCompatActivity() {
         super.onCreate(savedInstanceState)
         setContentView(R.layout.activity_main)
 
-        al.add("php")
-        al.add("c")
-        al.add("python")
-        al.add("java")
+        al.add("1")
+        al.add("2")
+        al.add("3")
+        al.add("4")
 
         //choose your favorite adapter
         arrayAdapter = ArrayAdapter<String>(this, R.layout.item, R.id.helloText, al)
