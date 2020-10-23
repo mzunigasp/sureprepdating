@@ -12,18 +12,23 @@ import androidx.core.content.ContextCompat
 import androidx.fragment.app.Fragment
 import androidx.viewpager.widget.ViewPager
 import com.google.android.material.tabs.TabLayout
+import com.google.firebase.auth.FirebaseAuth
+import com.google.firebase.database.DatabaseReference
+import com.google.firebase.database.FirebaseDatabase
 import com.lorentzos.flingswipe.SwipeFlingAdapterView
 import com.sureprep.dating.R
 import com.sureprep.dating.fragments.MatchesFragment
 import com.sureprep.dating.fragments.ProfileFragment
 import com.sureprep.dating.fragments.SwipeFragment
+import com.sureprep.dating.util.DATA_USERS
 import kotlinx.android.synthetic.main.activity_main.*
 
 
-class DatingActivity : AppCompatActivity() {
+class DatingActivity : AppCompatActivity(), DatingCallback {
 
-//    lateinit var tabLayout: TabLayout
-//    lateinit var viewPager: ViewPager
+    private val firebaseAuth = FirebaseAuth.getInstance()
+    private val userId = firebaseAuth.currentUser?.uid
+    private lateinit var userDatabase: DatabaseReference
 
     private var profileFragment: ProfileFragment? = null
     private var swipeFragment: SwipeFragment? = null
@@ -33,13 +38,16 @@ class DatingActivity : AppCompatActivity() {
     private var swipeTab: TabLayout.Tab? = null
     private var matchesTab: TabLayout.Tab? = null
 
-//    private var al = ArrayList<String>()
-//    private var arrayAdapter: ArrayAdapter<String>? = null
-//    private var i = 0
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
         setContentView(R.layout.activity_main)
+
+        if(userId.isNullOrEmpty()) {
+            onSignout()
+        }
+
+        userDatabase = FirebaseDatabase.getInstance().reference.child(DATA_USERS)
 
         profileTab = navigationTabs.newTab()
         swipeTab = navigationTabs.newTab()
@@ -72,18 +80,21 @@ class DatingActivity : AppCompatActivity() {
                     profileTab -> {
                         if (profileFragment == null) {
                             profileFragment = ProfileFragment()
+                            profileFragment!!.setCallback(this@DatingActivity)
                         }
                         replaceFragment(profileFragment!!)
                     }
                     swipeTab -> {
                         if (swipeFragment == null) {
                             swipeFragment = SwipeFragment()
+                            swipeFragment!!.setCallback(this@DatingActivity)
                         }
                         replaceFragment(swipeFragment!!)
                     }
                     matchesTab -> {
                         if (matchesFragment == null) {
                             matchesFragment = MatchesFragment()
+                            matchesFragment!!.setCallback(this@DatingActivity)
                         }
                         replaceFragment(matchesFragment!!)
                     }
@@ -98,4 +109,14 @@ class DatingActivity : AppCompatActivity() {
     companion object {
         fun newIntent(context: Context?) = Intent(context, DatingActivity::class.java)
     }
+
+    override fun onSignout() {
+        firebaseAuth.signOut()
+        startActivity(StartupActivity.newIntent(this))
+        finish()
+    }
+
+    override fun onGetUserId(): String = userId!!
+
+    override fun getUserDatabase(): DatabaseReference = userDatabase!!
 }
