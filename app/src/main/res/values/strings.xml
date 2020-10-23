@@ -17,4 +17,9 @@
     <string name="hint_preferred_gender">Seeking...</string>
     <string name="button_apply">Apply</string>
     <string name="button_sign_out">Sign Out</string>
+    <string name="hint_cpa">CPA</string>
+    <string name="hint_taxpayer">Taxpayer</string>
+    <string name="taxpayer_status">Are you a...</string>
+    <string name="error_profile_incomplete">Please compelte your profile</string>
+    <string name="hint_description">Add Your Description</string>
 </resources>

@@ -8,4 +8,8 @@ interface DatingCallback {
     fun onGetUserId(): String
 
     fun getUserDatabase(): DatabaseReference
+
+    fun profileComplete()
+
+    fun startActivityForPhoto()
 }

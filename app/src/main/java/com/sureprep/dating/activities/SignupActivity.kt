@@ -48,7 +48,7 @@ class SignupActivity : AppCompatActivity() {
                     if(task.isSuccessful) {
                         val email = emailET.text.toString()
                         val userId = firebaseAuth.currentUser?.uid ?: ""
-                        val user = User(userId, "","", email,"","", "")
+                        val user = User(userId, "","", email,"","", "","", "")
                         firebaseDatabase.child(DATA_USERS).child(userId).setValue(user)
                         startActivity(DatingActivity.newIntent(this))
                     }

@@ -9,6 +9,8 @@ data class User(
     val email: String? = "",
     val gender: String? = "",
     val preferredGender: String? = "",
-    val imageUrl: String? = ""
+    val imageUrl: String? = "",
+    val professionalStatus: String? = "",
+    val description: String? = ""
 )
 
