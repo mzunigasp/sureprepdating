@@ -7,9 +7,7 @@ import android.os.Bundle
 import android.view.View
 import android.widget.Toast
 import com.google.firebase.auth.FirebaseAuth
-import com.google.firebase.auth.ktx.auth
 import com.google.firebase.database.FirebaseDatabase
-import com.google.firebase.ktx.Firebase
 import com.sureprep.dating.R
 import com.sureprep.dating.User
 import com.sureprep.dating.util.DATA_USERS
@@ -22,7 +20,7 @@ class SignupActivity : AppCompatActivity() {
     private val firebaseAuthListener = FirebaseAuth.AuthStateListener {
         val user = firebaseAuth.currentUser
         if(user != null) {
-            startActivity(MainActivity.newIntent(this))
+            startActivity(DatingActivity.newIntent(this))
             finish()
         }
     }
@@ -52,7 +50,7 @@ class SignupActivity : AppCompatActivity() {
                         val userId = firebaseAuth.currentUser?.uid ?: ""
                         val user = User(userId, "","", email,"","", "")
                         firebaseDatabase.child(DATA_USERS).child(userId).setValue(user)
-                        startActivity(MainActivity.newIntent(this))
+                        startActivity(DatingActivity.newIntent(this))
                     }
                     else {
                         Toast.makeText(this, "Signup error ${task.exception?.localizedMessage}", Toast.LENGTH_SHORT).show()

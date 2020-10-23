@@ -16,7 +16,7 @@ class LoginActivity : AppCompatActivity() {
     private val firebaseAuthListener = FirebaseAuth.AuthStateListener {
         val user = firebaseAuth.currentUser
         if(user != null) {
-            startActivity(MainActivity.newIntent(this))
+            startActivity(DatingActivity.newIntent(this))
         }
     }
 
@@ -40,7 +40,7 @@ class LoginActivity : AppCompatActivity() {
             firebaseAuth.signInWithEmailAndPassword(emailET.text.toString(), passwordET.text.toString())
                 .addOnCompleteListener { task ->
                     if(task.isSuccessful) {
-                        startActivity(MainActivity.newIntent(this))
+                        startActivity(DatingActivity.newIntent(this))
                     }
                     else if(!task.isSuccessful) {
                         Toast.makeText(this, "Login error ${task.exception?.localizedMessage}", Toast.LENGTH_SHORT).show()

@@ -16,5 +16,7 @@
 <!--        <item name="android:layout_margin">@dimen/standard_button_margin</item>-->
 <!--        <item name="android:foreground">?attr/selectableItemBackground</item>-->
 <!--        <item name="android:clickable">true</item>-->
+        <item name="windowActionBar">false</item>
+        <item name="windowNoTitle">true</item>
     </style>
 </resources>
