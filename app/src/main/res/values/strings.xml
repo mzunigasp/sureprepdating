@@ -22,4 +22,5 @@
     <string name="taxpayer_status">Are you a...</string>
     <string name="error_profile_incomplete">Please compelte your profile</string>
     <string name="hint_description">Add Your Description</string>
+    <string name="hint_no_users">No available users</string>
 </resources>

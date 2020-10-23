@@ -64,6 +64,7 @@ class ProfileFragment : Fragment() {
                     nameET.setText(user?.name, TextView.BufferType.EDITABLE)
                     emailET.setText(user?.email, TextView.BufferType.EDITABLE)
                     ageET.setText(user?.age, TextView.BufferType.EDITABLE)
+                    descriptionET.setText(user?.description, TextView.BufferType.EDITABLE)
                     if (user?.gender == GENDER_MALE) {
                         radioMale1.isChecked = true
                     }
@@ -81,6 +82,12 @@ class ProfileFragment : Fragment() {
                     }
                     if (user?.preferredGender == GENDER_NB) {
                         radioNonbinary2.isChecked = true
+                    }
+                    if (user?.professionalStatus == DATA_CPA) {
+                        cpa.isChecked = true
+                    }
+                    if (user?.professionalStatus == DATA_TAXPAYER) {
+                        taxpayer.isChecked = true
                     }
                     if(!user?.imageUrl.isNullOrEmpty()) {
                         populateImage(user?.imageUrl!!)
